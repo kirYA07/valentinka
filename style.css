@@ -1,0 +1,97 @@
+/* ... (Всі попередні стилі зірок і сердець залишаються без змін) ... */
+
+body {
+    background: #00223e;
+    background: linear-gradient(to right, #00223e, #ffa17f);
+    overflow: hidden;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#universe { position: absolute; width: 100%; height: 100%; }
+.star0, .star1, .star2, .star3 { position: absolute; background: white; border-radius: 50%; }
+.star0 { width: 1px; height: 1px; } .star1 { width: 2px; height: 2px; }
+.star2 { width: 3px; height: 3px; } .star3 { width: 4px; height: 4px; }
+
+/* СЕРЦЯ (без змін) */
+.heart {
+    position: absolute; background-color: #ff4b2b; transform: rotate(-45deg);
+    display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+.heart:before, .heart:after { content: ""; position: absolute; background-color: inherit; border-radius: 50%; }
+
+.heart.central {
+    width: 400px; height: 400px; top: 50%; left: 50%; margin-top: -200px; margin-left: -200px;
+    box-shadow: 0 0 60px rgba(255, 75, 43, 0.6);
+}
+.heart.central:before, .heart.central:after { width: 400px; height: 400px; }
+.heart.central:before { top: -200px; left: 0; }
+.heart.central:after { top: 0; left: 200px; }
+
+.heart-content {
+    color: white; transform: rotate(45deg); z-index: 11; text-align: center; font-size: 35px;
+    font-weight: bold; margin-top: -40px; max-width: 280px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); pointer-events: none;
+}
+
+.heart-small {
+    width: 150px; height: 150px; box-shadow: 0 0 30px rgba(255, 75, 43, 0.4); cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+}
+.heart-small:before, .heart-small:after { width: 150px; height: 150px; }
+.heart-small:before { top: -75px; left: 0; }
+.heart-small:after { top: 0; left: 75px; }
+.heart-small:hover { transform: rotate(-45deg) scale(1.5) !important; z-index: 100; box-shadow: 0 0 80px rgba(255, 75, 43, 0.8); }
+
+.top-left { top: 12%; left: 12%; } .top-right { top: 12%; right: 12%; }
+.bottom-left { bottom: 12%; left: 12%; } .bottom-right { bottom: 12%; right: 12%; }
+
+.heart-photo {
+    width: 100%; height: 100%; object-fit: cover; transform: rotate(45deg) scale(1.4); z-index: 12; pointer-events: none;
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+    -webkit-mask-size: 100%; mask-size: 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+
+/* --- ОНОВЛЕНА КАРУСЕЛЬ --- */
+.carousel-box {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    max-width: 700px;
+    height: 60px;
+    
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 2px solid rgba(255, 75, 43, 0.5);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 20;
+}
+
+/* Трек, який рухається */
+.carousel-track {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+    /* Анімація задається через JS для контролю швидкості */
+}
+
+.carousel-content {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    /* Відступ справа, щоб текст не злипався при повторі */
+    padding-right: 50px; 
+}
+
+@keyframes scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Рухаємось рівно на половину (один блок тексту) */
+}
